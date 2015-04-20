@@ -669,8 +669,7 @@
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/alexey/Projects/Community/mixpanel-xamarin/XCodeProject/mixpanel-iphone/Mixpanel",
-					"/Users/dmitrijegorov/dev/lib/mixpanel-xamarin/XCodeProject/mixpanel-iphone/Mixpanel",
+					"$(SRCROOT)/../mixpanel-iphone/Mixpanel",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -683,8 +682,7 @@
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/alexey/Projects/Community/mixpanel-xamarin/XCodeProject/mixpanel-iphone/Mixpanel",
-					"/Users/dmitrijegorov/dev/lib/mixpanel-xamarin/XCodeProject/mixpanel-iphone/Mixpanel",
+					"$(SRCROOT)/../mixpanel-iphone/Mixpanel",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
