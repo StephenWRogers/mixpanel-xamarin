@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8A6F37081AE260EC00FD3343 /* libMixpanel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6F36FC1AE260EB00FD3343 /* libMixpanel.a */; };
 		8A6F37941AE2614E00FD3343 /* _MPTweakBindObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6F37181AE2614E00FD3343 /* _MPTweakBindObserver.m */; };
-		8A6F37951AE2614E00FD3343 /* libMPCategoryHelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6F37191AE2614E00FD3343 /* libMPCategoryHelpers.a */; };
 		8A6F37961AE2614E00FD3343 /* Mixpanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6F371C1AE2614E00FD3343 /* Mixpanel.m */; };
 		8A6F37971AE2614E00FD3343 /* MPAbstractABTestDesignerMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6F371E1AE2614E00FD3343 /* MPAbstractABTestDesignerMessage.m */; };
 		8A6F37981AE2614E00FD3343 /* MPABTestDesignerChangeRequestMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6F37201AE2614E00FD3343 /* MPABTestDesignerChangeRequestMessage.m */; };
@@ -72,6 +71,7 @@
 		8A6F37D11AE2614E00FD3343 /* UIColor+MPColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6F378F1AE2614E00FD3343 /* UIColor+MPColor.m */; };
 		8A6F37D21AE2614E00FD3343 /* UIImage+MPAverageColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6F37911AE2614E00FD3343 /* UIImage+MPAverageColor.m */; };
 		8A6F37D31AE2614E00FD3343 /* UIImage+MPImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6F37931AE2614E00FD3343 /* UIImage+MPImageEffects.m */; };
+		9D4FCC191AE574CF0097B645 /* libMPCategoryHelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A6F37191AE2614E00FD3343 /* libMPCategoryHelpers.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -232,7 +232,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A6F37951AE2614E00FD3343 /* libMPCategoryHelpers.a in Frameworks */,
+				9D4FCC191AE574CF0097B645 /* libMPCategoryHelpers.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,7 +669,7 @@
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/alexey/Projects/Community/mixpanel-xamarin/XCodeProject/mixpanel-iphone/Mixpanel",
+					"$(SRCROOT)/../mixpanel-iphone/Mixpanel",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -682,7 +682,7 @@
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/alexey/Projects/Community/mixpanel-xamarin/XCodeProject/mixpanel-iphone/Mixpanel",
+					"$(SRCROOT)/../mixpanel-iphone/Mixpanel",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
