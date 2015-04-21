@@ -26,9 +26,17 @@ libMixpanel-arm64.a:
 	
 libMixpanel.a: libMixpanel-i386.a libMixpanel-armv7.a libMixpanel-armv7s.a libMixpanel-arm64.a
 	lipo -create -output $(BUILD_DIR)/$@ $(addprefix $(BUILD_DIR)/,$^)
+	
+MPNotification.storyboardc:
+	ibtool --output-format binary1 --compile $(BUILD_DIR)/$@ ./XCodeProject/mixpanel-iphone/MixPanel/MPNotification.storyboard
 
-Mixpanel.dll: libMixpanel.a
+MPSurvey.storyboardc:
+	ibtool --output-format binary1 --compile $(BUILD_DIR)/$@ ./XCodeProject/mixpanel-iphone/MixPanel/MPSurvey.storyboard
+
+Mixpanel.dll: libMixpanel.a MPNotification.storyboardc MPSurvey.storyboardc
 	-cp $(BUILD_DIR)/libMixpanel.a $(BINDING_PROJECT_ROOT)/libMixpanel.a
+	-cp -r $(BUILD_DIR)/MPNotification.storyboardc $(BINDING_PROJECT_ROOT)/Resources/MPNotification.storyboardc
+	-cp -r $(BUILD_DIR)/MPSurvey.storyboardc $(BINDING_PROJECT_ROOT)/Resources/MPSurvey.storyboardc
 	$(XAMARIN_BUILD) -v build "--configuration:Release" $(BINDING_PROJECT_ROOT)/Mixpanel.sln
 	-cp $(BINDING_PROJECT_ROOT)/bin/Release/Mixpanel.dll $(BUILD_DIR)/Mixpanel.dll
 

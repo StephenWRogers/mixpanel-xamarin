@@ -36,6 +36,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Resources\MPNotification.storyboardc\" />
+    <Folder Include="Resources\MPSurvey.storyboardc\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -49,5 +51,53 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
   <ItemGroup>
     <ObjcBindingNativeLibrary Include="libMixpanel.a" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\MPNotification.storyboardc\Info.plist" />
+    <BundleResource Include="Resources\MPNotification.storyboardc\MPNotificationViewController.nib" />
+    <BundleResource Include="Resources\MPNotification.storyboardc\puo-Hy-QiQ-view-Wch-Xc-Avw.nib" />
+    <BundleResource Include="Resources\MPSurvey.storyboardc\Info.plist" />
+    <BundleResource Include="Resources\MPSurvey.storyboardc\MPSurveyMultipleChoiceQuestionViewController.nib" />
+    <BundleResource Include="Resources\MPSurvey.storyboardc\MPSurveyNavigationController.nib" />
+    <BundleResource Include="Resources\MPSurvey.storyboardc\MPSurveyTextQuestionViewController.nib" />
+    <BundleResource Include="Resources\MPSurvey.storyboardc\RIP-po-dgx-view-cp6-lZ-a9t.nib" />
+    <BundleResource Include="Resources\MPSurvey.storyboardc\V5X-Ik-MvF-view-dcL-M9-gG3.nib" />
+    <BundleResource Include="Resources\MPSurvey.storyboardc\tDf-fb-udT-view-LG7-cL-aRp.nib" />
+    <BundleResource Include="..\XCodeProject\mixpanel-iphone\Mixpanel\Media.xcassets\MPArrowLeft.imageset\MPArrowLeft.png">
+      <Link>Resources\MPArrowLeft.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\XCodeProject\mixpanel-iphone\Mixpanel\Media.xcassets\MPArrowLeft.imageset\MPArrowLeft%402x.png">
+      <Link>Resources\MPArrowLeft%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\XCodeProject\mixpanel-iphone\Mixpanel\Media.xcassets\MPArrowRight.imageset\MPArrowRight.png">
+      <Link>Resources\MPArrowRight.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\XCodeProject\mixpanel-iphone\Mixpanel\Media.xcassets\MPArrowRight.imageset\MPArrowRight%402x.png">
+      <Link>Resources\MPArrowRight%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\XCodeProject\mixpanel-iphone\Mixpanel\Media.xcassets\MPCheckmark.imageset\MPCheckmark.png">
+      <Link>Resources\MPCheckmark.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\XCodeProject\mixpanel-iphone\Mixpanel\Media.xcassets\MPCheckmark.imageset\MPCheckmark%402x.png">
+      <Link>Resources\MPCheckmark%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\XCodeProject\mixpanel-iphone\Mixpanel\Media.xcassets\MPCloseBtn.imageset\MPCloseBtn.png">
+      <Link>Resources\MPCloseBtn.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\XCodeProject\mixpanel-iphone\Mixpanel\Media.xcassets\MPCloseBtn.imageset\MPCloseBtn%402x.png">
+      <Link>Resources\MPCloseBtn%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\XCodeProject\mixpanel-iphone\Mixpanel\Media.xcassets\MPDismissKeyboard.imageset\MPDismissKeyboard.png">
+      <Link>Resources\MPDismissKeyboard.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\XCodeProject\mixpanel-iphone\Mixpanel\Media.xcassets\MPDismissKeyboard.imageset\MPDismissKeyboard%402x.png">
+      <Link>Resources\MPDismissKeyboard%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\XCodeProject\mixpanel-iphone\Mixpanel\Media.xcassets\MPLogo.imageset\MPLogo.png">
+      <Link>Resources\MPLogo.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\XCodeProject\mixpanel-iphone\Mixpanel\Media.xcassets\MPLogo.imageset\MPLogo%402x.png">
+      <Link>Resources\MPLogo%402x.png</Link>
+    </BundleResource>
   </ItemGroup>
 </Project>
