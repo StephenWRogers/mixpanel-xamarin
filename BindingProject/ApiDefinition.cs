@@ -146,9 +146,21 @@ namespace Mixpanel
 		[Export ("flush")]
 		void Flush ();
 
+		// -(void)flushWithCompletion:(void (^)())handler;
+		[Export ("flushWithCompletion:")]
+		void FlushWithCompletion (Action handler);
+
 		// -(void)archive;
 		[Export ("archive")]
 		void Archive ();
+
+		// -(void)createAlias:(NSString *)alias forDistinctID:(NSString *)distinctID;
+		[Export ("createAlias:forDistinctID:")]
+		void CreateAlias (string alias, string distinctID);
+
+		// -(NSString *)libVersion;
+		[Export ("libVersion")]
+		string LibVersion { get; }
 
 		// -(void)showSurveyWithID:(NSUInteger)ID;
 		[Export ("showSurveyWithID:")]
@@ -177,14 +189,6 @@ namespace Mixpanel
 		// -(void)joinExperimentsWithCallback:(void (^)())experimentsLoadedCallback;
 		[Export ("joinExperimentsWithCallback:")]
 		void JoinExperimentsWithCallback (Action experimentsLoadedCallback);
-
-		// -(void)createAlias:(NSString *)alias forDistinctID:(NSString *)distinctID;
-		[Export ("createAlias:forDistinctID:")]
-		void CreateAlias (string alias, string distinctID);
-
-		// -(NSString *)libVersion;
-		[Export ("libVersion")]
-		string LibVersion { get; }
 	}
 
 	// @interface MixpanelPeople : NSObject
