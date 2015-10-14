@@ -1,0 +1,12 @@
+﻿<Properties GitUserInfo="UsingGIT" StartupItem="Mixpanel.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ApiDefinition.cs">
+    <Files>
+      <File FileName="ApiDefinition.cs" Line="17" Column="5" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
