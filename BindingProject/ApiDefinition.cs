@@ -1,6 +1,7 @@
 using System;
 using Foundation;
 using ObjCRuntime;
+using UIKit;
 
 namespace Mixpanel
 {
@@ -8,24 +9,24 @@ namespace Mixpanel
 	[BaseType (typeof(NSObject))]
 	interface Mixpanel
 	{
-		// @property (readonly, atomic, strong) MixpanelPeople * people;
+		// @property (readonly, atomic, strong) MixpanelPeople * _Nonnull people;
 		[Export ("people", ArgumentSemantic.Strong)]
 		MixpanelPeople People { get; }
 
-		// @property (readonly, copy, atomic) NSString * distinctId;
+		// @property (readonly, copy, atomic) NSString * _Nonnull distinctId;
 		[Export ("distinctId")]
 		string DistinctId { get; }
 
-		// @property (copy, atomic) NSString * nameTag;
-		[Export ("nameTag")]
+		// @property (copy, atomic) NSString * _Nullable nameTag;
+		[NullAllowed, Export ("nameTag")]
 		string NameTag { get; set; }
 
-		// @property (copy, atomic) NSString * serverURL;
+		// @property (copy, atomic) NSString * _Nonnull serverURL;
 		[Export ("serverURL")]
 		string ServerURL { get; set; }
 
 		// @property (atomic) NSUInteger flushInterval;
-		[Export ("flushInterval", ArgumentSemantic.Assign)]
+		[Export ("flushInterval")]
 		nuint FlushInterval { get; set; }
 
 		// @property (atomic) BOOL flushOnBackground;
@@ -44,6 +45,10 @@ namespace Mixpanel
 		[Export ("showSurveyOnActive")]
 		bool ShowSurveyOnActive { get; set; }
 
+		// @property (readonly, atomic) BOOL isSurveyAvailable;
+		[Export ("isSurveyAvailable")]
+		bool IsSurveyAvailable { get; }
+
 		// @property (atomic) BOOL checkForNotificationsOnActive;
 		[Export ("checkForNotificationsOnActive")]
 		bool CheckForNotificationsOnActive { get; set; }
@@ -56,69 +61,78 @@ namespace Mixpanel
 		[Export ("showNotificationOnActive")]
 		bool ShowNotificationOnActive { get; set; }
 
+		// @property (atomic) BOOL useIPAddressForGeoLocation;
+		[Export ("useIPAddressForGeoLocation")]
+		bool UseIPAddressForGeoLocation { get; set; }
+
 		// @property (atomic) CGFloat miniNotificationPresentationTime;
-		[Export ("miniNotificationPresentationTime", ArgumentSemantic.Assign)]
+		[Export ("miniNotificationPresentationTime")]
 		nfloat MiniNotificationPresentationTime { get; set; }
 
+		// @property (atomic) UIColor * _Nullable miniNotificationBackgroundColor;
+		[NullAllowed, Export ("miniNotificationBackgroundColor", ArgumentSemantic.Assign)]
+		UIColor MiniNotificationBackgroundColor { get; set; }
+
 		[Wrap ("WeakDelegate")]
+		[NullAllowed]
 		MixpanelDelegate Delegate { get; set; }
 
-		// @property (atomic, weak) id<MixpanelDelegate> delegate;
+		// @property (atomic, weak) id<MixpanelDelegate> _Nullable delegate;
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
 		NSObject WeakDelegate { get; set; }
 
-		// +(Mixpanel *)sharedInstanceWithToken:(NSString *)apiToken;
+		// +(Mixpanel * _Nonnull)sharedInstanceWithToken:(NSString * _Nonnull)apiToken;
 		[Static]
 		[Export ("sharedInstanceWithToken:")]
 		Mixpanel SharedInstanceWithToken (string apiToken);
 
-		// +(Mixpanel *)sharedInstanceWithToken:(NSString *)apiToken launchOptions:(NSDictionary *)launchOptions;
+		// +(Mixpanel * _Nonnull)sharedInstanceWithToken:(NSString * _Nonnull)apiToken launchOptions:(NSDictionary * _Nullable)launchOptions;
 		[Static]
 		[Export ("sharedInstanceWithToken:launchOptions:")]
-		Mixpanel SharedInstanceWithToken (string apiToken, NSDictionary launchOptions);
+		Mixpanel SharedInstanceWithToken (string apiToken, [NullAllowed] NSDictionary launchOptions);
 
-		// +(Mixpanel *)sharedInstance;
+		// +(Mixpanel * _Nonnull)sharedInstance;
 		[Static]
 		[Export ("sharedInstance")]
 		Mixpanel SharedInstance { get; }
 
-		// -(instancetype)initWithToken:(NSString *)apiToken launchOptions:(NSDictionary *)launchOptions andFlushInterval:(NSUInteger)flushInterval;
+		// -(instancetype _Nonnull)initWithToken:(NSString * _Nonnull)apiToken launchOptions:(NSDictionary * _Nullable)launchOptions andFlushInterval:(NSUInteger)flushInterval;
 		[Export ("initWithToken:launchOptions:andFlushInterval:")]
-		IntPtr Constructor (string apiToken, NSDictionary launchOptions, nuint flushInterval);
+		IntPtr Constructor (string apiToken, [NullAllowed] NSDictionary launchOptions, nuint flushInterval);
 
-		// -(instancetype)initWithToken:(NSString *)apiToken andFlushInterval:(NSUInteger)flushInterval;
+		// -(instancetype _Nonnull)initWithToken:(NSString * _Nonnull)apiToken andFlushInterval:(NSUInteger)flushInterval;
 		[Export ("initWithToken:andFlushInterval:")]
 		IntPtr Constructor (string apiToken, nuint flushInterval);
 
-		// -(void)identify:(NSString *)distinctId;
+		// -(void)identify:(NSString * _Nonnull)distinctId;
 		[Export ("identify:")]
 		void Identify (string distinctId);
 
-		// -(void)track:(NSString *)event;
+		// -(void)track:(NSString * _Nonnull)event;
 		[Export ("track:")]
 		void Track (string eventName);
 
-		// -(void)track:(NSString *)event properties:(NSDictionary *)properties;
+		// -(void)track:(NSString * _Nonnull)event properties:(NSDictionary * _Nullable)properties;
 		[Export ("track:properties:")]
-		void Track (string eventName, NSDictionary properties);
+		void Track (string eventName, [NullAllowed] NSDictionary properties);
 
-		// -(void)trackPushNotification:(NSDictionary *)userInfo;
+		// -(void)trackPushNotification:(NSDictionary * _Nonnull)userInfo;
 		[Export ("trackPushNotification:")]
 		void TrackPushNotification (NSDictionary userInfo);
 
-		// -(void)registerSuperProperties:(NSDictionary *)properties;
+		// -(void)registerSuperProperties:(NSDictionary * _Nonnull)properties;
 		[Export ("registerSuperProperties:")]
 		void RegisterSuperProperties (NSDictionary properties);
 
-		// -(void)registerSuperPropertiesOnce:(NSDictionary *)properties;
+		// -(void)registerSuperPropertiesOnce:(NSDictionary * _Nonnull)properties;
 		[Export ("registerSuperPropertiesOnce:")]
 		void RegisterSuperPropertiesOnce (NSDictionary properties);
 
-		// -(void)registerSuperPropertiesOnce:(NSDictionary *)properties defaultValue:(id)defaultValue;
+		// -(void)registerSuperPropertiesOnce:(NSDictionary * _Nonnull)properties defaultValue:(id _Nullable)defaultValue;
 		[Export ("registerSuperPropertiesOnce:defaultValue:")]
-		void RegisterSuperPropertiesOnce (NSDictionary properties, NSObject defaultValue);
+		void RegisterSuperPropertiesOnce (NSDictionary properties, [NullAllowed] NSObject defaultValue);
 
-		// -(void)unregisterSuperProperty:(NSString *)propertyName;
+		// -(void)unregisterSuperProperty:(NSString * _Nonnull)propertyName;
 		[Export ("unregisterSuperProperty:")]
 		void UnregisterSuperProperty (string propertyName);
 
@@ -126,11 +140,11 @@ namespace Mixpanel
 		[Export ("clearSuperProperties")]
 		void ClearSuperProperties ();
 
-		// -(NSDictionary *)currentSuperProperties;
+		// -(NSDictionary * _Nonnull)currentSuperProperties;
 		[Export ("currentSuperProperties")]
 		NSDictionary CurrentSuperProperties { get; }
 
-		// -(void)timeEvent:(NSString *)event;
+		// -(void)timeEvent:(NSString * _Nonnull)event;
 		[Export ("timeEvent:")]
 		void TimeEvent (string eventName);
 
@@ -146,19 +160,19 @@ namespace Mixpanel
 		[Export ("flush")]
 		void Flush ();
 
-		// -(void)flushWithCompletion:(void (^)())handler;
+		// -(void)flushWithCompletion:(void (^ _Nullable)())handler;
 		[Export ("flushWithCompletion:")]
-		void FlushWithCompletion (Action handler);
+		void FlushWithCompletion ([NullAllowed] Action handler);
 
 		// -(void)archive;
 		[Export ("archive")]
 		void Archive ();
 
-		// -(void)createAlias:(NSString *)alias forDistinctID:(NSString *)distinctID;
+		// -(void)createAlias:(NSString * _Nonnull)alias forDistinctID:(NSString * _Nonnull)distinctID;
 		[Export ("createAlias:forDistinctID:")]
 		void CreateAlias (string alias, string distinctID);
 
-		// -(NSString *)libVersion;
+		// -(NSString * _Nonnull)libVersion;
 		[Export ("libVersion")]
 		string LibVersion { get; }
 
@@ -174,7 +188,7 @@ namespace Mixpanel
 		[Export ("showNotificationWithID:")]
 		void ShowNotificationWithID (nuint ID);
 
-		// -(void)showNotificationWithType:(NSString *)type;
+		// -(void)showNotificationWithType:(NSString * _Nonnull)type;
 		[Export ("showNotificationWithType:")]
 		void ShowNotificationWithType (string type);
 
@@ -186,54 +200,66 @@ namespace Mixpanel
 		[Export ("joinExperiments")]
 		void JoinExperiments ();
 
-		// -(void)joinExperimentsWithCallback:(void (^)())experimentsLoadedCallback;
+		// -(void)joinExperimentsWithCallback:(void (^ _Nullable)())experimentsLoadedCallback;
 		[Export ("joinExperimentsWithCallback:")]
-		void JoinExperimentsWithCallback (Action experimentsLoadedCallback);
+		void JoinExperimentsWithCallback ([NullAllowed] Action experimentsLoadedCallback);
 	}
 
 	// @interface MixpanelPeople : NSObject
 	[BaseType (typeof(NSObject))]
 	interface MixpanelPeople
 	{
-		// -(void)addPushDeviceToken:(NSData *)deviceToken;
+		// @property (atomic) BOOL ignoreTime;
+		[Export ("ignoreTime")]
+		bool IgnoreTime { get; set; }
+
+		// -(void)addPushDeviceToken:(NSData * _Nonnull)deviceToken;
 		[Export ("addPushDeviceToken:")]
 		void AddPushDeviceToken (NSData deviceToken);
 
-		// -(void)set:(NSDictionary *)properties;
+		// -(void)removePushDeviceToken;
+		[Export ("removePushDeviceToken")]
+		void RemovePushDeviceToken ();
+
+		// -(void)set:(NSDictionary * _Nonnull)properties;
 		[Export ("set:")]
 		void Set (NSDictionary properties);
 
-		// -(void)set:(NSString *)property to:(id)object;
+		// -(void)set:(NSString * _Nonnull)property to:(id _Nonnull)object;
 		[Export ("set:to:")]
 		void Set (string property, NSObject obj);
 
-		// -(void)setOnce:(NSDictionary *)properties;
+		// -(void)setOnce:(NSDictionary * _Nonnull)properties;
 		[Export ("setOnce:")]
 		void SetOnce (NSDictionary properties);
 
-		// -(void)increment:(NSDictionary *)properties;
+		// -(void)unset:(NSArray * _Nonnull)properties;
+		[Export ("unset:")]
+		void Unset (string[] properties);
+
+		// -(void)increment:(NSDictionary * _Nonnull)properties;
 		[Export ("increment:")]
 		void Increment (NSDictionary properties);
 
-		// -(void)increment:(NSString *)property by:(NSNumber *)amount;
+		// -(void)increment:(NSString * _Nonnull)property by:(NSNumber * _Nonnull)amount;
 		[Export ("increment:by:")]
 		void Increment (string property, NSNumber amount);
 
-		// -(void)append:(NSDictionary *)properties;
+		// -(void)append:(NSDictionary * _Nonnull)properties;
 		[Export ("append:")]
 		void Append (NSDictionary properties);
 
-		// -(void)union:(NSDictionary *)properties;
+		// -(void)union:(NSDictionary * _Nonnull)properties;
 		[Export ("union:")]
 		void Union (NSDictionary properties);
 
-		// -(void)trackCharge:(NSNumber *)amount;
+		// -(void)trackCharge:(NSNumber * _Nonnull)amount;
 		[Export ("trackCharge:")]
 		void TrackCharge (NSNumber amount);
 
-		// -(void)trackCharge:(NSNumber *)amount withProperties:(NSDictionary *)properties;
+		// -(void)trackCharge:(NSNumber * _Nonnull)amount withProperties:(NSDictionary * _Nullable)properties;
 		[Export ("trackCharge:withProperties:")]
-		void TrackCharge (NSNumber amount, NSDictionary properties);
+		void TrackCharge (NSNumber amount, [NullAllowed] NSDictionary properties);
 
 		// -(void)clearCharges;
 		[Export ("clearCharges")]
@@ -249,7 +275,7 @@ namespace Mixpanel
 	[BaseType (typeof(NSObject))]
 	interface MixpanelDelegate
 	{
-		// @optional -(BOOL)mixpanelWillFlush:(Mixpanel *)mixpanel;
+		// @optional -(BOOL)mixpanelWillFlush:(Mixpanel * _Nonnull)mixpanel;
 		[Export ("mixpanelWillFlush:")]
 		bool MixpanelWillFlush (Mixpanel mixpanel);
 	}
