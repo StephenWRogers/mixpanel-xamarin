@@ -4,7 +4,7 @@
 
 This project provides bindings for using in [Xamarin](https://xamarin.com) iOS projects.
 
-Current Mixpanel version: **2.9.4**
+Current Mixpanel version: **3.0.5**
 
 ## How to build?
 
